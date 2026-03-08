@@ -1,32 +1,25 @@
-# cw — Claude Workspace CLI
+# claude-clone — Claude Workspace CLI
 
 Interactive multi-repo workspace tool for Claude Code. Fuzzy-search GitHub repos, select multiple, clone them in parallel, and launch Claude with full context across all of them.
 
 ## Install
 
 ```bash
-git clone https://github.com/yourname/cw
-cd cw
-npm install
-sudo npm link   # makes `cw` available globally
+npm install -g claude-clone
 ```
 
-Or run directly with:
-
-```bash
-npx tsx src/index.ts <command>
-```
-
-**Requirements:** [`gh` CLI](https://cli.github.com/) installed and authenticated (`gh auth login`), `claude` CLI in PATH.
+**Requirements:**
+- [`gh` CLI](https://cli.github.com/) — `brew install gh && gh auth login`
+- [Claude Code](https://claude.ai/code) — `claude` must be in PATH
 
 ## Usage
 
-### `cw create [name]`
+### `claude-clone create [name]`
 
 Interactive workspace setup — prompts for org (or leave blank for your own repos), shows a fuzzy-searchable checkbox to pick repos, clones them in parallel, and launches Claude.
 
 ```bash
-cw create my-feature
+claude-clone create my-feature
 ```
 
 **Flags:**
@@ -45,11 +38,11 @@ cw create my-feature
 **Examples:**
 
 ```bash
-cw create                                      # interactive: prompts for org, fuzzy-select repos
-cw create my-feature --org acme               # skip org prompt
-cw create my-feature --org acme --repos api,frontend  # non-interactive
-cw create my-feature --preset backend         # use saved preset
-cw create my-feature --shallow --no-open      # clone only, don't launch Claude
+claude-clone create                                      # interactive: prompts for org, fuzzy-select repos
+claude-clone create my-feature --org acme               # skip org prompt
+claude-clone create my-feature --org acme --repos api,frontend  # non-interactive
+claude-clone create my-feature --preset backend         # use saved preset
+claude-clone create my-feature --shallow --no-open      # clone only, don't launch Claude
 ```
 
 ### Searchable Repo Picker
@@ -71,51 +64,51 @@ cw create my-feature --shallow --no-open      # clone only, don't launch Claude
 
 ---
 
-### `cw open [name]`
+### `claude-clone open [name]`
 
 Reopen an existing workspace in Claude Code.
 
 ```bash
-cw open                  # select from existing workspaces
-cw open my-feature       # open directly by name
+claude-clone open                  # select from existing workspaces
+claude-clone open my-feature       # open directly by name
 ```
 
 ---
 
-### `cw preset list|save|delete`
+### `claude-clone preset list|save|delete`
 
 Save and manage named repo groups.
 
 ```bash
-cw preset list
-cw preset save backend --org acme
-cw preset delete backend
+claude-clone preset list
+claude-clone preset save backend --org acme
+claude-clone preset delete backend
 ```
 
 Then use them:
 
 ```bash
-cw create my-feature --preset backend
+claude-clone create my-feature --preset backend
 ```
 
 ---
 
-### `cw config get|set`
+### `claude-clone config get|set`
 
 Read or update global config.
 
 ```bash
-cw config get
-cw config get defaultOrg
-cw config set defaultOrg acme
-cw config set workspaceDir ~/workspaces/claude
+claude-clone config get
+claude-clone config get defaultOrg
+claude-clone config set defaultOrg acme
+claude-clone config set workspaceDir ~/workspaces/claude
 ```
 
 ---
 
 ## Config
 
-Stored at `~/.config/cw/config.json`:
+Stored at `~/.config/claude-clone/config.json`:
 
 ```json
 {

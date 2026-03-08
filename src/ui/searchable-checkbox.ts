@@ -110,8 +110,9 @@ export const searchableCheckbox = createPrompt<
     }
 
     // Handle printable characters (typed into filter)
-    if (key.sequence && !key.ctrl && !key.meta && key.sequence.length === 1 && key.sequence.charCodeAt(0) >= 32) {
-      const newFilter = currentFilter + key.sequence;
+    const k = key as unknown as { sequence?: string; meta?: boolean };
+    if (k.sequence && !key.ctrl && !k.meta && k.sequence.length === 1 && k.sequence.charCodeAt(0) >= 32) {
+      const newFilter = currentFilter + k.sequence;
       setFilter(newFilter);
       setCursorIndex(0);
       setScrollOffset(0);
@@ -121,6 +122,7 @@ export const searchableCheckbox = createPrompt<
   });
 
   // Render
+
   const visibleRepos = filteredRepos.slice(scrollOffset, scrollOffset + MAX_VISIBLE);
 
   const lines: string[] = [];

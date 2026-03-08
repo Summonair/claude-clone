@@ -45,7 +45,7 @@ export function createCommand(): Command {
         if (opts.preset) {
           const preset = Object.hasOwn(config.presets, opts.preset) ? config.presets[opts.preset] : undefined;
           if (!preset) {
-            console.error(pc.red(`Preset "${opts.preset}" not found. Run \`cw preset list\` to see available presets.`));
+            console.error(pc.red(`Preset "${opts.preset}" not found. Run \`claude-clone preset list\` to see available presets.`));
             process.exit(1);
           }
           org = preset.org || undefined;

@@ -1,9 +1,9 @@
 {
-  "name": "cw",
+  "name": "claude-clone",
   "version": "1.0.0",
   "type": "module",
   "bin": {
-    "cw": "./bin/cw.js"
+    "claude-clone": "./bin/claude-clone.js"
   },
   "files": [
     "bin",
