@@ -17,7 +17,7 @@ npx tsc --noEmit
 
 ## Architecture
 
-`bin/claude-clone.js` is the entry point — it spawns `tsx` to run `src/index.ts` directly, so there is no build step. TypeScript is never compiled to JS in normal usage.
+`src/index.ts` is the entry point. For development, run via `tsx` directly. For publishing, `tsc` compiles to `dist/` and `dist/index.js` is the bin entry point.
 
 **Command flow:** `src/index.ts` registers Commander commands → each command in `src/commands/` handles its own logic, calling into `src/lib/` for side effects and `src/ui/` for interactive prompts.
 

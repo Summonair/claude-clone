@@ -1,16 +1,17 @@
 {
   "name": "claude-clone",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "bin": {
-    "claude-clone": "./bin/claude-clone.js"
+    "claude-clone": "./dist/index.js"
   },
   "files": [
-    "bin",
-    "src"
+    "dist"
   ],
   "scripts": {
-    "dev": "tsx src/index.ts"
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@inquirer/core": "^10.1.5",
