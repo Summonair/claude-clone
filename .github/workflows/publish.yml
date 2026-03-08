@@ -16,7 +16,8 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          registry-url: https://registry.npmjs.org
       - run: npm ci
       - run: npx tsc --noEmit
       - run: npm run build
-      - run: npm publish --provenance --registry https://registry.npmjs.org
+      - run: npm publish --provenance
