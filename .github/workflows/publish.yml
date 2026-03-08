@@ -19,12 +19,5 @@ jobs:
           registry-url: https://registry.npmjs.org
       - run: npm ci
       - run: npx tsc --noEmit
-      - name: Publish if version changed
-        run: |
-          PUBLISHED=$(npm view $(node -p "require('./package.json').name") version 2>/dev/null || echo "0.0.0")
-          LOCAL=$(node -p "require('./package.json').version")
-          if [ "$PUBLISHED" != "$LOCAL" ]; then
-            npm publish --provenance
-          else
-            echo "Version $LOCAL already published, skipping."
-          fi
+      - run: npm run build
+      - run: npm publish
