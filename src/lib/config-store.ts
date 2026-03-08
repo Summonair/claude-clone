@@ -3,7 +3,7 @@ import path from 'path';
 import os from 'os';
 import type { Config } from '../types.js';
 
-const CONFIG_DIR = path.join(os.homedir(), '.config', 'cw');
+const CONFIG_DIR = path.join(os.homedir(), '.config', 'claude-clone');
 const CONFIG_FILE = path.join(CONFIG_DIR, 'config.json');
 
 const DEFAULT_CONFIG: Config = {

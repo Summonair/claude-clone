@@ -18,7 +18,7 @@ export function presetCommand(): Command {
         const config = await loadConfig();
         const presets = Object.entries(config.presets);
         if (presets.length === 0) {
-          console.log(pc.dim('No presets saved yet. Run `cw preset save <name>` to create one.'));
+          console.log(pc.dim('No presets saved yet. Run `claude-clone preset save <name>` to create one.'));
           return;
         }
         console.log(pc.bold('Saved presets:\n'));
@@ -89,7 +89,7 @@ export function presetCommand(): Command {
 
         console.log('');
         console.log(pc.green(`✓ Preset "${name}" saved with ${result.selected.length} repo(s) from ${org ?? 'your account'}.`));
-        console.log(pc.dim(`  Run \`cw create <name> --preset ${name}\` to use it.`));
+        console.log(pc.dim(`  Run \`claude-clone create <name> --preset ${name}\` to use it.`));
       } catch (err: unknown) {
         const msg = err instanceof Error ? err.message : String(err);
         console.error(pc.red(`Error: ${msg}`));

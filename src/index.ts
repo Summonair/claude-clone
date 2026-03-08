@@ -7,7 +7,7 @@ import { configCommand } from './commands/config.js';
 const program = new Command();
 
 program
-  .name('cw')
+  .name('claude-clone')
   .description('Interactive multi-repo workspace CLI for Claude Code')
   .version('1.0.0');
 

@@ -1,6 +1,7 @@
 import { Command } from 'commander';
 import { select } from '@inquirer/prompts';
-import fs, { type Dirent } from 'fs/promises';
+import fs from 'fs/promises';
+import type { Dirent } from 'fs';
 import path from 'path';
 import pc from 'picocolors';
 import { loadConfig } from '../lib/config-store.js';
@@ -72,7 +73,7 @@ export function openCommand(): Command {
           const workspaces = await getWorkspaceDirs(baseDir);
           if (workspaces.length === 0) {
             console.log(pc.yellow(`No workspaces found in ${expanded}.`));
-            console.log(pc.dim('Run `cw create` to create one.'));
+            console.log(pc.dim('Run `claude-clone create` to create one.'));
             process.exit(0);
           }
 

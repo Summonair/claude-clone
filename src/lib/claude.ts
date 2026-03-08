@@ -14,7 +14,7 @@ export async function writeClaudeMd(
 
   const content = `# ${workspaceName}
 
-This is a multi-repo workspace created by \`cw\` (Claude Workspace CLI).
+This is a multi-repo workspace created by \`claude-clone\` (Claude Code Workspace CLI).
 
 ## Repos in this workspace
 
@@ -33,7 +33,7 @@ ${repos.map((r) => `  ${r.name}/`).join('\n')}
 
 - This workspace was set up for use with Claude Code.
 - Each subdirectory is an independent git repository.
-- Use \`cw open ${workspaceName}\` to reopen this workspace in Claude Code.
+- Use \`claude-clone open ${workspaceName}\` to reopen this workspace in Claude Code.
 `;
 
   await fs.writeFile(path.join(workspaceDir, 'CLAUDE.md'), content, 'utf-8');
