@@ -17,9 +17,10 @@ jobs:
           node-version: 22
           cache: npm
           registry-url: https://registry.npmjs.org
+      - run: npm install -g npm@latest
       - run: npm ci
       - run: npx tsc --noEmit
       - run: npm run build
-      - name: Clear auth token for OIDC
+      - name: Clear npmrc for OIDC
         run: echo "NODE_AUTH_TOKEN=" >> $GITHUB_ENV
       - run: npm publish --provenance
