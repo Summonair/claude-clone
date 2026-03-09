@@ -39,16 +39,8 @@ ${repos.map((r) => `  ${r.name}/`).join('\n')}
   await fs.writeFile(path.join(workspaceDir, 'CLAUDE.md'), content, 'utf-8');
 }
 
-export function launchClaude(workspaceDir: string, repos: string[]): void {
-  const args: string[] = [];
-
-  for (const repo of repos) {
-    args.push('--add-dir', repo);
-  }
-
-  args.push(workspaceDir);
-
-  const child = spawn('claude', args, {
+export function launchClaude(workspaceDir: string): void {
+  const child = spawn('claude', [], {
     stdio: 'inherit',
     env: process.env,
     cwd: workspaceDir,

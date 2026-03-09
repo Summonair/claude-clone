@@ -1,7 +1,6 @@
 import { Command } from 'commander';
 import { input } from '@inquirer/prompts';
 import pc from 'picocolors';
-import path from 'path';
 import { fetchRepos } from '../lib/github.js';
 import { cloneRepos } from '../lib/clone.js';
 import { writeClaudeMd, launchClaude } from '../lib/claude.js';
@@ -139,9 +138,8 @@ export function createCommand(): Command {
         console.log(pc.green(`✓ Workspace "${workspaceName}" ready at ${wsDir}`));
 
         if (opts.open) {
-          const repoDirs = selectedRepos.map((r) => path.join(wsDir, r.name));
           console.log(pc.dim('Launching Claude Code...'));
-          launchClaude(wsDir, repoDirs);
+          launchClaude(wsDir);
         }
       } catch (err: unknown) {
         const msg = err instanceof Error ? err.message : String(err);
