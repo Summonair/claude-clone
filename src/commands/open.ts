@@ -25,28 +25,6 @@ async function getWorkspaceDirs(baseDir: string): Promise<string[]> {
     .sort();
 }
 
-async function findGitRepoDirs(workspaceDir: string): Promise<string[]> {
-  let entries: Dirent[];
-  try {
-    entries = await fs.readdir(workspaceDir, { withFileTypes: true });
-  } catch {
-    return [];
-  }
-
-  const repoDirs: string[] = [];
-  for (const entry of entries) {
-    if (!entry.isDirectory()) continue;
-    const subDir = path.join(workspaceDir, entry.name);
-    const gitDir = path.join(subDir, '.git');
-    try {
-      await fs.stat(gitDir);
-      repoDirs.push(subDir);
-    } catch {
-      // not a git repo
-    }
-  }
-  return repoDirs;
-}
 
 function isNodeError(err: unknown): err is NodeJS.ErrnoException {
   return err instanceof Error && 'code' in err;
@@ -99,16 +77,8 @@ export function openCommand(): Command {
           process.exit(1);
         }
 
-        const repoDirs = await findGitRepoDirs(workspaceDir);
-
-        if (repoDirs.length === 0) {
-          console.warn(pc.yellow(`No git repositories found in ${workspaceDir}.`));
-          console.log(pc.dim('Launching Claude with just the workspace directory.'));
-          launchClaude(workspaceDir, []);
-        } else {
-          console.log(pc.dim(`Opening workspace "${workspaceName}" with ${repoDirs.length} repo(s)...`));
-          launchClaude(workspaceDir, repoDirs);
-        }
+        console.log(pc.dim(`Opening workspace "${workspaceName}"...`));
+        launchClaude(workspaceDir);
       } catch (err: unknown) {
         const msg = err instanceof Error ? err.message : String(err);
         console.error(pc.red(`Error: ${msg}`));
