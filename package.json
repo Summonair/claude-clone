@@ -21,6 +21,7 @@
     "listr2": "^8.2.5",
     "picocolors": "^1.1.1"
   },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/Summonair/claude-clone"
